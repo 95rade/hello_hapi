@@ -33,5 +33,12 @@ jobs:
         passed: [install-dependencies]
       - get: dependency-cache
         passed: [install-dependencies]
-      - task: run the test suite
-        file: hello_hapi/ci/tasks/run_tests.yml
+      - task: run-the-test-suite
+      #  file: hello_hapi/ci/tasks/run_tests.yml
+        #image: flight-school-docker-image  # task runs inside image container
+        config:
+          platform: linux
+          inputs:
+          - name: hello_hapi
+          run:
+            path: ./hello_hapi/ci/scripts/run_tests.sh
